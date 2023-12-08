@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: default 
+  name: Auto-Best-scheduler 
+  labels:
+    app: Auto-Best-scheduler 
+    component: Auto-Best-scheduler
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: Auto-Best-scheduler
+subjects:
+- kind: ServiceAccount
+  name: Auto-Best-scheduler
+  namespace: default 
+roleRef:
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+  name: system:kube-scheduler

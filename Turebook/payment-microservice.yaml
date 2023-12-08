@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-payment
+  labels:
+    app: truebook
+    service: hello-payment
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - truebook
+              - key: service
+                operator: In
+                values:
+                  - hello-payment
+          topologyKey: "kubernetes.io/hostname"
+  nodeSelector:
+    location: dev
+  containers:
+    - name: hello-payment
+      image: swapnil333/hello-payment

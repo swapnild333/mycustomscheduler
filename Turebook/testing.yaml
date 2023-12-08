@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: random-namespace  # Specify your namespace
+  annotations:
+    scheduler.alpha.kubernetes.io/name: Auto-Best-scheduler    # Specify your custom scheduler
+spec:
+  containers:
+  - name: my-container
+    image: nginx

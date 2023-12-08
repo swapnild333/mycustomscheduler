@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Auto-Best-scheduler
+  labels:
+    app: Auto-Best-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Auto-Best-scheduler
+  template:
+    metadata:
+      labels:
+        app: Auto-Best-scheduler
+    spec:
+      serviceAccount: Auto-Best-scheduler
+      containers:
+        - name: Auto-Best-scheduler
+          image: devopsfreak0/scheduler:v0.3
+          imagePullPolicy: Always
